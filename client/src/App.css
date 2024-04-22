@@ -2,48 +2,95 @@
 @tailwind components;
 @tailwind utilities;
 
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+/* body { ------------------------------------------------------------------------------
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+* {
+  @apply box-border m-0 p-0;
 }
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+} */
 
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+/* .joinBoxWrapper { --------------------------------------------------------------------
+  @apply bg-[#fcfcfc] min-h-screen grid place-items-center;
 }
-
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.joinBox {
+  @apply w-[300px] grid gap-[15px] shadow-[0_0_15px_15px_rgb(235,234,234)] bg-[white] px-[15px] py-[30px] rounded-[10px] border-2 border-solid border-[rgb(237,234,234)];
 }
+.joinBoxBtn {
+  @apply text-[white] bg-[#ffdd00] border text-[75%] font-[bold] cursor-pointer transition-all duration-[0.45s] ease-[ease-in-out] delay-[0.05s] px-[15px] py-2 rounded-[25px] border-solid border-[#ffdd00] hover:text-[black] hover:bg-[white];
+  outline: none;
+}
+.joinBoxInput {
+  @apply bg-[#f0f0f0] px-[15px] py-2.5 rounded-[5px] border-[none];
+  outline: none;
+}
+.joinBoxInputWrapper {
+  @apply w-full grid gap-[5px];
+}
+.joinBoxWarning {
+  @apply h-2.5 text-[small] text-[red];
+} 
+*/
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+
+/* .room { ------------------------------------------------------------------------------
+  @apply flex flex-col gap-2.5 min-h-screen pt-2.5 pb-5 px-2.5;
+}
+.roomSidebar {
+  @apply flex flex-col gap-2.5;
+}
+.languageFieldWrapper {
+  @apply bg-[#f0f0f0] px-1.5 py-0.5 rounded-[5px];
+}
+.languageField {
+  @apply bg-[#f0f0f0] capitalize px-2.5 py-1.5 border-[none];
+  outline: none;
+}
+.roomCodeEditor {
+  @apply flex-1;
+}
+.roomSidebarCopyBtn {
+  @apply text-[75%] font-[bold] text-[white] bg-[#ffdd00] border cursor-pointer transition-all duration-[0.45s] ease-[ease-in-out] delay-[0.05s] px-[15px] py-2 rounded-[5px] border-solid border-[#ffdd00] hover:text-[black] hover:bg-[white];
+  outline: none;
+}
+.roomSidebarBtn {
+  @apply text-[75%] font-[bold] bg-[white] border cursor-pointer transition-all duration-[0.45s] ease-[ease-in-out] delay-[0.05s] px-[15px] py-2.5 rounded-[5px] border-solid border-[black] hover:text-[white] hover:bg-[black];
+  outline: none;
+}
+.roomSidebarUsersWrapper {
+  @apply flex flex-col items-center gap-2.5;
+}
+.roomSidebarUsers {
+  @apply flex flex-wrap gap-2.5;
+}
+.roomSidebarUsersEach {
+  @apply grid justify-items-center;
+}
+.roomSidebarUsersEachAvatar {
+  @apply text-[white] min-w-[30px] min-h-[30px] text-[small] grid place-items-center p-[5px] rounded-[5px];
+}
+.roomSidebarUsersEachName {
+  @apply font-[bold] text-[small];
+}
+@media screen and (min-width: 991px) {
+  .room {
+    @apply flex-row;
   }
-
-  to {
-    transform: rotate(360deg);
+  .roomSidebar {
+    @apply flex-[0.25];
+  }
+  .roomSidebar > *:nth-child(2) {
+    @apply mt-auto;
+  }
+  .roomCodeEditor {
+    @apply flex-[0.75];
   }
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
+*/

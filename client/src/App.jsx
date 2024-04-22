@@ -1,4 +1,5 @@
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
 import './App.css'
 
 import JoinRoom from './pages/JoinRoom';
@@ -11,8 +12,10 @@ const pagesRouter = createBrowserRouter([
 
 function App() {
 
-  return (
+  return (<>
+    <Toaster />
     <RouterProvider router={pagesRouter} />
+  </>
   )
 }
 
