@@ -1,12 +1,17 @@
 import Editor from '@monaco-editor/react';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { toast } from 'react-hot-toast';
-import { useParams } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Avatar from 'react-avatar';
+import { initSocket } from './initSocket';
+import SOCKET_ACTIONS from './SocketActions';
 
 const Room = () => {
     const { roomId } = useParams();
     // Editor dynamic properties -------------------------------------
+    const socketRef = useRef(null);
+    const reactNavigate = useNavigate();
+    const location = useLocation();
     const languagesAvailable = [
         'javaScript', 'typeScript',
         'cpp', 'java',
@@ -39,6 +44,57 @@ const Room = () => {
             toast.error()
         }
     }
+
+    const handleLeave = () => {
+        !socketRef.current.connected && reactNavigate('/', { replace: true, state: {} })
+        socketRef.current.disconnect()
+    }
+
+
+    useEffect(() => {
+        // console.log('UseEffect called ----------------------------');
+        const handleErrors = (err) => {
+            console.log('Socket error: ', err);
+            toast.error('Socket connection failed, try again later');
+            reactNavigate('/');
+        }
+        const initScoketClient = async () => {
+            socketRef.current = await initSocket();
+            socketRef.current.on('connect_error', (err) => handleErrors(err));
+            socketRef.current.on('connect_failed', (err) => handleErrors(err));
+
+            console.log('Socket Connection Done')
+            socketRef.current.emit(SOCKET_ACTIONS.JOIN, {
+                roomId,
+                username: location.state?.username,
+            });
+
+            //  Listeinging for joined event
+            socketRef.current.on(SOCKET_ACTIONS.CLIENTLIST_UPDATE, ({ userList }) => {
+                setConnectedUsers(userList);
+            })
+            socketRef.current.on(SOCKET_ACTIONS.JOINED, ({ username }) => {
+                if (username !== location.state?.username) {
+                    toast.success(`${username} joined the room`);
+                }
+            });
+
+            socketRef.current.on(SOCKET_ACTIONS.DISCONNECTED, ({ socketId, username }) => {
+                toast.success(`${username} left the room.`);
+                setConnectedUsers((prev) => {
+                    return prev.filter(connectedUser => connectedUser.socketId !== socketId)
+                })
+            });
+
+        }
+        initScoketClient();
+        return () => {
+            socketRef.current.off(SOCKET_ACTIONS.JOINED);
+            socketRef.current.off(SOCKET_ACTIONS.CLIENTLIST_UPDATE);
+            socketRef.current.off(SOCKET_ACTIONS.DISCONNECTED);
+            socketRef.current.disconnect();
+        }
+    }, [location.state?.username, reactNavigate, roomId]);
 
     return (
         <div className="flex flex-col gap-2.5 min-h-screen pt-2.5 pb-5 px-2.5">
@@ -83,6 +139,7 @@ const Room = () => {
 
                     <button
                         className='font-bold text-white bg-orange-500 border cursor-pointer transition-all duration-75 ease-in-out delay-100 px-4 py-2 rounded-[5px] border-solid border-[#ffdd00] hover:text-black outline-none'
+                        onClick={handleLeave}
                     >Leave</button>
 
                 </div>

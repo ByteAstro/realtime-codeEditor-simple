@@ -10,13 +10,12 @@ const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
         origin: "*",
-        methods: ["GET", "POST"],
     }
 });
 
 // socket.io listener ------------------------------
-const socketListen = require('./socketComm.js')
-socketListen(io);
+const socketCommunication1 = require('./socketComm.js')
+socketCommunication1(io);
 
 // app running check ---------------------------------
 app.get('/', (req, res) => {

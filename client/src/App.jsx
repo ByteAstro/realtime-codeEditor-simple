@@ -4,6 +4,7 @@ import './App.css'
 
 import JoinRoom from './pages/JoinRoom';
 import Room from './pages/Room';
+import SocketWrapper from './pages/SocketWrapper';
 
 const pagesRouter = createBrowserRouter([
   { path: '/', element: <JoinRoom /> },
