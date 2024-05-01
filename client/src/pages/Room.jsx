@@ -159,16 +159,16 @@ const Room = () => {
             </div>
 
             {/* Editor ---------------------------------------------- */}
-            {/* <Editor
+            <Editor
                 height={"90vh"}
                 className='bg-slate-900 p-2'
                 theme={editorTheme}
                 language={editorLanguage}
                 defaultValue="// WWrite your code here"
-            /> */}
+            />
 
             {/* Group chat ----------------------------------------- */}
-            <ChatPage />
+            {/* <ChatPage /> */}
 
         </div>
     )
