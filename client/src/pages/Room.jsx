@@ -5,6 +5,7 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import Avatar from 'react-avatar';
 import { initSocket } from './initSocket';
 import SOCKET_ACTIONS from './SocketActions';
+import ChatPage from './chat/ChatPage';
 
 const Room = () => {
     const { roomId } = useParams();
@@ -97,7 +98,7 @@ const Room = () => {
     }, [location.state?.username, reactNavigate, roomId]);
 
     return (
-        <div className="flex flex-col gap-2.5 min-h-screen pt-2.5 pb-5 px-2.5">
+        <div className="flex flex-col h-screen gap-2.5 min-h-screen pt-2.5 pb-5 px-2.5">
 
             {/* Tollbar -------------------------------------------------- */}
             <div className="flex flex-row  justify-center gap-2.5">
@@ -158,13 +159,16 @@ const Room = () => {
             </div>
 
             {/* Editor ---------------------------------------------- */}
-            <Editor
+            {/* <Editor
                 height={"90vh"}
                 className='bg-slate-900 p-2'
                 theme={editorTheme}
                 language={editorLanguage}
                 defaultValue="// WWrite your code here"
-            />
+            /> */}
+
+            {/* Group chat ----------------------------------------- */}
+            <ChatPage />
 
         </div>
     )
